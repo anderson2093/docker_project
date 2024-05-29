@@ -1,31 +1,18 @@
-# Utilizamos la imagen oficial de Keycloak como base
 FROM quay.io/keycloak/keycloak:latest
 
-# Configuramos las variables de entorno para la base de datos
+# Set environment variables for Keycloak
+ENV KEYCLOAK_ADMIN=docspot.nocountry@gmail.com
+ENV KEYCLOAK_ADMIN_PASSWORD=admin
 ENV DB_VENDOR=postgres
+ENV DB_ADDR=postgresql://dpg-cp4mmegcmk4c73emahkg-a.oregon-postgres.render.com/docspot
+ENV DB_PORT=5432
+ENV DB_DATABASE=docspot
+ENV DB_SCHEMA=public
 ENV DB_USER=c18_39_n_java_angular
-ENV DB_PASSWORD=Ej0Nm4ltamnFJVL9do7UDlKZdivvvpce
-ENV DB_URL=postgresql://dpg-cp4mmegcmk4c73emahkg-a.oregon-postgres.render.com/docspot
+ENV DB_PWD=Ej0Nm4ltamnFJVL9do7UDlKZdivvvpce
 
-# Configuramos las variables de entorno para Keycloak
-ENV KEYCLOAK_USER_ADMIN=docspot.nocountry@gmail.com
-ENV KEYCLOAK_PASSWORD_ADMIN=admin
-ENV KEYCLOAK_REALM=docspot
-
-# Copiamos el archivo de configuración de Keycloak
-COPY conf/keycloak.json /opt/keycloak/conf/
-
-# Ejecutamos el comando para inicializar la base de datos
-RUN bin/kc.sh init db
-
-# Ejecutamos el comando para crear el realm
-RUN bin/kc.sh create-realm --realm $KEYCLOAK_REALM
-
-# Ejecutamos el comando para crear el usuario administrador
-RUN bin/kc.sh add-user --realm $KEYCLOAK_REALM --username $KEYCLOAK_USER_ADMIN --password $KEYCLOAK_PASSWORD_ADMIN
-
-# Exponemos el puerto 8080 para que Render pueda acceder a Keycloak
+# Expose the port
 EXPOSE 8080
 
-# Ejecutamos el comando para iniciar Keycloak
-CMD ["-b", "0.0.0.0", "-Dkeycloak.profile.feature.upload_scripts=enabled"]
+# Run the Keycloak server
+CMD ["start-dev"]
