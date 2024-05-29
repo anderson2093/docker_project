@@ -1,14 +1,18 @@
-version: '3'
 services:
   keycloak:
-    build: .
+    type: web
+    build: { context:., dockerfile: Dockerfile }
     ports:
-      - "8080:8080"
+      - 8080:8080
     environment:
+      - KEYCLOAK_ADMIN=docspot.nocountry@gmail.com
+      - KEYCLOAK_ADMIN_PASSWORD=admin
       - DB_VENDOR=postgres
+      - DB_ADDR=postgresql://dpg-cp4mmegcmk4c73emahkg-a.oregon-postgres.render.com/docspot
+      - DB_PORT=5432
+      - DB_DATABASE=docspot
+      - DB_SCHEMA=public
       - DB_USER=c18_39_n_java_angular
-      - DB_PASSWORD=Ej0Nm4ltamnFJVL9do7UDlKZdivvvpce
-      - DB_URL=postgresql://dpg-cp4mmegcmk4c73emahkg-a.oregon-postgres.render.com/docspot
-      - KEYCLOAK_USER_ADMIN=docspot.nocountry@gmail.com
-      - KEYCLOAK_PASSWORD_ADMIN=admin
-      - KEYCLOAK_REALM=docspot
+      - DB_PWD=Ej0Nm4ltamnFJVL9do7UDlKZdivvvpce
+      - KEYCLOAK_FRONTEND_URL=https://docker-project-lll9.onrender.com/
+      - QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY=true
