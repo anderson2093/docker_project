@@ -17,3 +17,7 @@ services:
       - DB_PWD=Ej0Nm4ltamnFJVL9do7UDlKZdivvvpce
       - KEYCLOAK_FRONTEND_URL=https://docker-project-lll9.onrender.com/
       - QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY=true
+      - KEYCLOAK_PROXIED=true
+      - KEYCLOAK_HTTPS=true
+      - KEYCLOAK_PROXY_ADDRESS_FORWARDING=true
+
