@@ -14,5 +14,11 @@ ENV DB_PWD=Ej0Nm4ltamnFJVL9do7UDlKZdivvvpce
 # Expose the port
 EXPOSE 8080
 
+# Set Keycloak frontend URL
+ENV KEYCLOAK_FRONTEND_URL=https://docker-project-lll9.onrender.com/
+
+# Enable transaction recovery for Quarkus
+ENV QUARKUS_TRANSACTION_MANAGER_ENABLE_RECOVERY=true
+
 # Run the Keycloak server
 CMD ["start-dev"]
