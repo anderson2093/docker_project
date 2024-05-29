@@ -19,10 +19,10 @@ COPY conf/keycloak.json /opt/keycloak/conf/
 RUN bin/kc.sh init db
 
 # Ejecutamos el comando para crear el realm
-RUN /opt/keycloak/bin/kc.sh create-realm --realm $KEYCLOAK_REALM
+RUN bin/kc.sh create-realm --realm $KEYCLOAK_REALM
 
 # Ejecutamos el comando para crear el usuario administrador
-RUN /opt/keycloak/bin/kc.sh add-user --realm $KEYCLOAK_REALM --username $KEYCLOAK_USER_ADMIN --password $KEYCLOAK_PASSWORD_ADMIN
+RUN bin/kc.sh add-user --realm $KEYCLOAK_REALM --username $KEYCLOAK_USER_ADMIN --password $KEYCLOAK_PASSWORD_ADMIN
 
 # Exponemos el puerto 8080 para que Render pueda acceder a Keycloak
 EXPOSE 8080
