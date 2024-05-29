@@ -13,16 +13,16 @@ ENV KEYCLOAK_PASSWORD_ADMIN=admin
 ENV KEYCLOAK_REALM=docspot
 
 # Copiamos el archivo de configuración de Keycloak
-COPY keycloak.json /keycloak/conf/
+COPY conf/keycloak.json /opt/keycloak/conf/
 
 # Ejecutamos el comando para inicializar la base de datos
-RUN /keycloak/bin/kc.sh init db
+RUN /opt/keycloak/bin/kc.sh init db
 
 # Ejecutamos el comando para crear el realm
-RUN /keycloak/bin/kc.sh create-realm --realm $KEYCLOAK_REALM
+RUN /opt/keycloak/bin/kc.sh create-realm --realm $KEYCLOAK_REALM
 
 # Ejecutamos el comando para crear el usuario administrador
-RUN /keycloak/bin/kc.sh add-user --realm $KEYCLOAK_REALM --username $KEYCLOAK_USER_ADMIN --password $KEYCLOAK_PASSWORD_ADMIN
+RUN /opt/keycloak/bin/kc.sh add-user --realm $KEYCLOAK_REALM --username $KEYCLOAK_USER_ADMIN --password $KEYCLOAK_PASSWORD_ADMIN
 
 # Exponemos el puerto 8080 para que Render pueda acceder a Keycloak
 EXPOSE 8080
