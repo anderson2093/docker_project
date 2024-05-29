@@ -1,5 +1,5 @@
 # Utilizamos la imagen oficial de Keycloak como base
-FROM jboss/keycloak:18.0.0
+FROM quay.io/keycloak/keycloak:latest
 
 # Configuramos las variables de entorno para la base de datos
 ENV DB_VENDOR=postgres
