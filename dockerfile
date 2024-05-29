@@ -16,7 +16,7 @@ ENV KEYCLOAK_REALM=docspot
 COPY conf/keycloak.json /opt/keycloak/conf/
 
 # Ejecutamos el comando para inicializar la base de datos
-RUN /opt/keycloak/bin/kc.sh init db
+RUN bin/kc.sh init db
 
 # Ejecutamos el comando para crear el realm
 RUN /opt/keycloak/bin/kc.sh create-realm --realm $KEYCLOAK_REALM
